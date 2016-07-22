@@ -15,7 +15,7 @@ app.set('view engine', 'html');
 app.engine('html', swig.renderFile);
 
 app.get('/', function(req, res, next){
-  res.render('index', { nav: 'home' });
+  res.render('index', { nav: 'home', title: 'Home' });
 });
 
 app.use('/products', require('./products.routes'));
