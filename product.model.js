@@ -14,7 +14,13 @@ module.exports = {
     return _products;
   },
   addProduct: function(product){
-    product.id = _products.length;
+    var max = this.getProducts().reduce(function(max, item){
+      if(item.id > max)
+        max = item.id;
+      return max;
+    });
+    max++;
+    product.id = max; 
     _products.push(product);
   },
   deleteProduct: function(id){
