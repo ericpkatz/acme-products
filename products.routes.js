@@ -10,8 +10,8 @@ router.get('/:id/edit', function(req, res){
 });
 
 router.put('/:id', function(req, res){
-  var product = Product.getProduct(req.params.id*1);
-  product.name = req.body.name;
+  Product.updateProduct(req.params.id*1, req.body);
+  //product.name = req.body.name;
   res.redirect('/products');
 });
 

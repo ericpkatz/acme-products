@@ -6,24 +6,29 @@ var _products = [
 ];
 module.exports = {
   getProduct: function(id){
-    return _products.filter(function(product){
+    return this.getProducts().filter(function(product){
       return product.id === id;
     })[0];
   },
   getProducts: function(){
     return _products;
   },
+  updateProduct: function(id, data){
+    var product = this.getProduct(id);
+    product.name = data.name;
+  },
   addProduct: function(product){
-    var max = this.getProducts().reduce(function(max, item){
-      if(item.id > max)
-        max = item.id;
+    var max = this.getProducts().reduce(function(max, product){
+      if(product.id > max)
+        max = product.id;
       return max;
-    });
+    }, 0);
     max++;
     product.id = max; 
     _products.push(product);
   },
   deleteProduct: function(id){
-    _products.splice(_products.indexOf(this.getProduct(id)), 1);
+    var idx = this.getProducts().indexOf(this.getProduct(id));
+    this.getProducts().splice(idx, 1);
   }
 };
